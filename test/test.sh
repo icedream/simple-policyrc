@@ -38,6 +38,8 @@ check_policy() {
 ###
 
 compare_output list /usr/sbin/policy-rc.d --list
+compare_output list-test /usr/sbin/policy-rc.d --list test
+compare_output list-test2 /usr/sbin/policy-rc.d --list test2
 
 check_policy test this-should-be-allowed 0
 check_policy test this-should-also-be-allowed 0

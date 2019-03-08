@@ -1,0 +1,4 @@
+this-should-be-allowed => allow
+this-should-also-be-allowed => allow
+this-should-be-fallbacked => fallback (fallback1, fallback2)
+* => deny
