@@ -42,6 +42,10 @@ check_policy_from_configuration() {
 	# Syntax: (allow|deny|<any exit code>) action,action... [fallback,fallback,fallback...]
 	while read -r permission defined_actions fallbacks
 	do
+		if [ -z "$permission" ]
+		then
+			continue
+		fi
 		while read -d, defined_action
 		do
 			if [ -z "$defined_action" ]
@@ -54,13 +58,17 @@ check_policy_from_configuration() {
 				return
 			fi
 		done <<< "$defined_actions,"
-	done < <(filter_comments "$service_configuration_path")
+	done < <(filter_comments "$service_configuration_path" && echo "")
 }
 
 list_policies_from_configuration() {
 	service_configuration_path="$1"
 	while read -r permission actions fallbacks
 	do
+		if [ -z "$permission" ]
+		then
+			continue
+		fi
 		while read -d, action
 		do
 			if [ -z "$action" ]
@@ -87,7 +95,7 @@ list_policies_from_configuration() {
 			fi
 			log "$action => $perm_code$perm_extra"
 		done <<< "$actions,"
-	done < <(filter_comments "$service_configuration_path")
+	done < <(filter_comments "$service_configuration_path" && echo "")
 }
 
 convert_policyrc_code_to_name() {
