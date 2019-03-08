@@ -204,7 +204,9 @@ do
 	arg="$1"
 	case "$arg" in
 	--list)
+		shift 1
 		list_all_policies_for_services "$@"
+		break
 		;;
 	--quiet)
 		flag_quiet=1
