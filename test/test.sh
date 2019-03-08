@@ -10,7 +10,7 @@ compare_output() {
 	name="$1"
 	shift 1
 	"$@" > actual-output/"$name".txt
-	diff -B expected-output/"$name".txt actual-output/"$name".txt
+	diff -uB expected-output/"$name".txt actual-output/"$name".txt
 }
 
 check_policy() {
@@ -25,7 +25,7 @@ check_policy() {
 	set -e
 	actual_code="$?"
 	[ "$actual_code" -eq "$expected_code" ]
-	diff -B "$expected_output_path" "$actual_output_path"
+	diff -uB "$expected_output_path" "$actual_output_path"
 }
 
 ###
