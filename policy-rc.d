@@ -86,11 +86,15 @@ list_policies_from_configuration() {
 			then
 				perm_extra+=" ("
 				delimiter=""
-				for fallback in "${perm_stdout[@]}"
+				while read -d" " fallback
 				do
+					if [ -z "$fallback" ]
+					then
+						continue
+					fi
 					perm_extra+="$delimiter$fallback"
 					delimiter=", "
-				done
+				done <<< "$perm_stdout "
 				perm_extra+=")"
 			fi
 			log "$action => $perm_code$perm_extra"
@@ -149,14 +153,18 @@ convert_permission_to_output() {
 	fallback|106)
 		# Convert comma-delimited fallbacks list to space-delimited
 		fallback_str=""
-		while IFS=, read fallback
+		while read -r -d, fallback
 		do
+			if [ -z "$fallback" ]
+			then
+				continue
+			fi
 			if [ -n "$fallback_str" ]
 			then
 				fallback_str+=" "
 			fi
 			fallback_str+="$fallback"
-		done <<< "$fallbacks"
+		done <<< "$fallbacks,"
 		echo "$fallback_str"
 
 		return 106
