@@ -33,6 +33,7 @@ check_policy() {
 	actual_code="$?"
 	[ "$actual_code" -eq "$expected_code" ]
 	diff -uB --strip-trailing-cr "$expected_output_path" "$actual_output_path"
+	rm -f "$expected_output_path" "$actual_output_path"
 }
 
 ###
