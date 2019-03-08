@@ -10,7 +10,7 @@ Configuration files are placed in the folder `/etc/policy-rc.d` and are simply
 named after the service they are defining policies for. Each text line in this
 file will define a policy for one or more actions like this:
 
-```
+```sh
 # This is an example policy configuration file.
 # If you want to apply a policy to more than one action at once, use a
 # comma-delimited list. The special action name '*' applies to all actions.
