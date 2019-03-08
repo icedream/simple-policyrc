@@ -78,8 +78,8 @@ list_policies_from_configuration() {
 
 			set +e
 			perm_stdout="$(convert_permission_to_output "$permission" "$fallback")"
-			set -e
 			perm_code="$(convert_policyrc_code_to_name $?)"
+			set -e
 			perm_extra=""
 
 			if [ -n "$perm_stdout" ]
