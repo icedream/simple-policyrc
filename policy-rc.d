@@ -44,7 +44,7 @@ check_policy_from_configuration() {
 	do
 		while read -d, defined_action
 		do
-			if [ "$defined_action" = "" ]
+			if [ -z "$defined_action" ]
 			then
 				continue
 			fi
