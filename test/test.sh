@@ -2,6 +2,13 @@
 
 # TODO - Implement runlevel filtering.
 
+if [ "$(id -u)" -eq 0 ]
+then
+	sudo() {
+		"$@"
+	}
+fi
+
 sudo install -m 755 ../policy-rc.d /usr/sbin/policy-rc.d
 sudo cp -a policy-rc.d /etc/
 mkdir -p actual-output
