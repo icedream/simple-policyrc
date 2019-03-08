@@ -1,0 +1,3 @@
+allow this-should-be-allowed,this-should-also-be-allowed
+fallback this-should-be-fallbacked fallback1,fallback2
+deny *

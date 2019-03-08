@@ -1,0 +1,12 @@
+language: bash
+
+before_script:
+  - curl -L "http://downloads.sourceforge.net/shunit2/shunit2-2.0.3.tgz" | tar zx
+
+script:
+
+  # Lint shell script
+  - shellcheck policy-rc.d
+
+  # Test behavior
+  - test/test.sh

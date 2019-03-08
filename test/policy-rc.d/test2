@@ -1,0 +1,4 @@
+# Another configuration file, this time with comments!
+deny abc # Inline comment
+# Another comment.
+allow *

@@ -1,0 +1,8 @@
+# test
+this-should-be-allowed => allow
+this-should-also-be-allowed => allow
+this-should-be-fallbacked => fallback (fallback1, fallback2)
+* => deny
+# test2
+abc => deny
+* => allow
