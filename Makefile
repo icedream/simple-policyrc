@@ -8,4 +8,4 @@ test:
 		debian ./test.sh
 
 install:
-	install -m 644 policy-rc.d /usr/sbin/policy-rc.d
+	install -m 755 policy-rc.d /usr/sbin/policy-rc.d
