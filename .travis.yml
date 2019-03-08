@@ -9,4 +9,4 @@ script:
   - shellcheck policy-rc.d
 
   # Test behavior
-  - test/test.sh
+  - cd test && ./test.sh
