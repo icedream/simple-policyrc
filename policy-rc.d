@@ -22,7 +22,7 @@
 config_dir="/etc/policy-rc.d"
 
 filter_comments() {
-	sed 's,#.*$,,g'
+	sed 's,#.*$,,g' "$@"
 }
 
 check_policy_for_service() {
