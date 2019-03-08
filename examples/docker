@@ -1,0 +1,4 @@
+# This configuration file disallows stopping the Docker daemon automatically.
+# This is useful for keeping Docker containers running during an upgrade.
+
+deny stop,restart

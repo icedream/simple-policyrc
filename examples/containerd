@@ -1,0 +1,4 @@
+# This configuration file disallows stopping containerd automatically.
+# This is useful for keeping containers running during an upgrade.
+
+deny stop,restart
