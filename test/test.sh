@@ -1,4 +1,4 @@
-#!/bin/sh -ex
+#!/bin/sh -e
 
 # TODO - Implement runlevel filtering.
 
@@ -17,7 +17,11 @@ compare_output() {
 	name="$1"
 	shift 1
 	"$@" > actual-output/"$name".txt
-	diff -uB --strip-trailing-cr expected-output/"$name".txt actual-output/"$name".txt
+	echo "** Testing: $*"
+	diff -uB --strip-trailing-cr expected-output/"$name".txt actual-output/"$name".txt || (
+		echo "ERROR: Differences in output."
+		exit 1
+	)
 }
 
 check_policy() {
@@ -26,13 +30,20 @@ check_policy() {
 	expected_code="$3"
 	expected_output_path="$(mktemp)"
 	printf "%s" "$4" > "$expected_output_path"
+	echo "** Testing: /usr/sbin/policy-rc.d $name $action (should return $expected_code, output \"$(cat "$expected_output_path")\")"
 	set +e
 	actual_output_path="$(mktemp)"
 	/usr/sbin/policy-rc.d "$name" "$action" > "$actual_output_path"
 	set -e
 	actual_code="$?"
-	[ "$actual_code" -eq "$expected_code" ]
-	diff -uB --strip-trailing-cr "$expected_output_path" "$actual_output_path"
+	[ "$actual_code" -eq "$expected_code" ] || (
+		echo "ERROR: Actual code: $actual_code"
+		exit 1
+	)
+	diff -uB --strip-trailing-cr "$expected_output_path" "$actual_output_path" || (
+		echo "ERROR: Differences in output."
+		exit 1
+	)
 	rm -f "$expected_output_path" "$actual_output_path"
 }
 
