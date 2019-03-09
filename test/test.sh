@@ -29,7 +29,7 @@ check_policy() {
 	action="$2"
 	expected_code="$3"
 	expected_output_path="$(mktemp)"
-	printf "%s" "$4" > "$expected_output_path"
+	echo "$4" > "$expected_output_path"
 	echo "** Testing: /usr/sbin/policy-rc.d $name $action (should return $expected_code, output \"$(cat "$expected_output_path")\")"
 	set +e
 	actual_output_path="$(mktemp)"
