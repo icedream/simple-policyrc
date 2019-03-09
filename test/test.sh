@@ -34,8 +34,8 @@ check_policy() {
 	set +e
 	actual_output_path="$(mktemp)"
 	/usr/sbin/policy-rc.d "$name" "$action" > "$actual_output_path"
-	set -e
 	actual_code="$?"
+	set -e
 	[ "$actual_code" -eq "$expected_code" ] || (
 		echo "ERROR: Actual code: $actual_code"
 		exit 1
