@@ -46,7 +46,7 @@ check_policy_from_configuration() {
 		then
 			continue
 		fi
-		while read -d, defined_action
+		while read -r -d, defined_action
 		do
 			if [ -z "$defined_action" ]
 			then
@@ -69,7 +69,7 @@ list_policies_from_configuration() {
 		then
 			continue
 		fi
-		while read -d, action
+		while read -r -d, action
 		do
 			if [ -z "$action" ]
 			then
@@ -86,7 +86,7 @@ list_policies_from_configuration() {
 			then
 				perm_extra+=" ("
 				delimiter=""
-				while read -d" " fallback
+				while read -r -d" " fallback
 				do
 					if [ -z "$fallback" ]
 					then
